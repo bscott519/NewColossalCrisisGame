@@ -1,0 +1,248 @@
+[gd_scene load_steps=30 format=3 uid="uid://cbrjwdmbhictw"]
+
+[ext_resource type="Script" uid="uid://ba7kmamigg8am" path="res://Scripts/earth_giant.gd" id="1_kl2yr"]
+[ext_resource type="Texture2D" uid="uid://cbmek8v8jln14" path="res://GameArt/CCEarthGiantSS.png" id="1_obi7s"]
+[ext_resource type="Texture2D" uid="uid://bapnf131jmdih" path="res://GameArt/TMMEnemyDeath1.png" id="2_71syd"]
+[ext_resource type="Texture2D" uid="uid://l1yxspaxqyio" path="res://GameArt/TMMEnemyDeath2.png" id="3_82jbl"]
+[ext_resource type="FontFile" uid="uid://bajqlmo0hm0fl" path="res://GameArt/Shouldve Known.otf" id="3_horgh"]
+[ext_resource type="Texture2D" uid="uid://hcy0hjwm1svq" path="res://GameArt/TMMEnemyDeath3.png" id="4_hlnqd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msvhs"]
+atlas = ExtResource("2_71syd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t672y"]
+atlas = ExtResource("3_82jbl")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8xnp"]
+atlas = ExtResource("4_hlnqd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klkj6"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c2nm"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy1mr"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c5xl"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7akv"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1roc"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjduh"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6pyb"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob3a6"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cojhq"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogu1d"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7ngs"]
+atlas = ExtResource("1_obi7s")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e7ak4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msvhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t672y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8xnp")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klkj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c2nm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy1mr")
+}],
+"loop": false,
+"name": &"rock_summon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6c5xl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6c5xl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7akv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1roc")
+}],
+"loop": false,
+"name": &"slam",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjduh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6pyb")
+}],
+"loop": false,
+"name": &"stomp",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob3a6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cojhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogu1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7ngs")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d8xn0"]
+height = 50.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8icpq"]
+size = Vector2(180, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyhic"]
+size = Vector2(75, 31)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgat6"]
+radius = 19.0
+height = 52.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgat6"]
+size = Vector2(53, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgat6"]
+bg_color = Color(0.288518, 0.288518, 0.288518, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_horgh"]
+bg_color = Color(0, 0.894118, 0, 1)
+
+[node name="EarthGiant" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_kl2yr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e7ak4")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 6)
+shape = SubResource("CapsuleShape2D_d8xn0")
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+position = Vector2(-1, 10)
+shape = SubResource("RectangleShape2D_8icpq")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="AttackRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
+position = Vector2(-2.5, 14.5)
+shape = SubResource("RectangleShape2D_fyhic")
+
+[node name="EGHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EGHitbox"]
+position = Vector2(-2, 5)
+shape = SubResource("CapsuleShape2D_vgat6")
+
+[node name="EGDealDamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EGDealDamageArea"]
+position = Vector2(-1, 21)
+shape = SubResource("RectangleShape2D_vgat6")
+
+[node name="EnableEGDamageArea" type="Timer" parent="."]
+one_shot = true
+
+[node name="DisableEGDamageArea" type="Timer" parent="."]
+one_shot = true
+
+[node name="EGHealthBar" type="ProgressBar" parent="."]
+offset_left = -39.0
+offset_top = 33.0
+offset_right = 39.0
+offset_bottom = 60.0
+scale = Vector2(1, 0.279998)
+theme_override_styles/background = SubResource("StyleBoxFlat_vgat6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_horgh")
+max_value = 10.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="EGHealthBar"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 3.57146
+offset_right = 174.0
+offset_bottom = 26.5715
+scale = Vector2(0.32, 1.00001)
+theme_override_fonts/font = ExtResource("3_horgh")
+text = "The Earth Giant"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="body_entered" from="AttackRadius" to="." method="_on_attack_radius_body_entered"]
+[connection signal="body_exited" from="AttackRadius" to="." method="_on_attack_radius_body_exited"]
+[connection signal="body_entered" from="EGDealDamageArea" to="." method="_on_eg_deal_damage_area_body_entered"]
+[connection signal="timeout" from="EnableEGDamageArea" to="." method="_on_enable_eg_damage_area_timeout"]
+[connection signal="timeout" from="DisableEGDamageArea" to="." method="_on_disable_eg_damage_area_timeout"]
