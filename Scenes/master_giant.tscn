@@ -1,8 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://cwb6f3qlo4mpl"]
+[gd_scene load_steps=38 format=3 uid="uid://cwb6f3qlo4mpl"]
 
+[ext_resource type="Script" uid="uid://docqnn50valoa" path="res://Scripts/master_giant.gd" id="1_gv2vs"]
 [ext_resource type="Texture2D" uid="uid://6ddjklopc4e" path="res://GameArt/CCMasterGiantHead.png" id="1_o2p3u"]
 [ext_resource type="Texture2D" uid="uid://c310no3s8h500" path="res://GameArt/CCMasterGiantLeftHand.png" id="2_4mstd"]
 [ext_resource type="Texture2D" uid="uid://bjpmhjqthoxjv" path="res://GameArt/CCMasterGiantRighHand.png" id="3_di18c"]
+[ext_resource type="Script" uid="uid://dowg32obhksvh" path="res://Scripts/mg_animationtree.gd" id="4_2htnq"]
 [ext_resource type="Texture2D" uid="uid://bapnf131jmdih" path="res://GameArt/TMMEnemyDeath1.png" id="4_7omvd"]
 [ext_resource type="Texture2D" uid="uid://l1yxspaxqyio" path="res://GameArt/TMMEnemyDeath2.png" id="5_lp5c8"]
 [ext_resource type="Texture2D" uid="uid://hcy0hjwm1svq" path="res://GameArt/TMMEnemyDeath3.png" id="6_2htnq"]
@@ -1121,18 +1123,48 @@ radius = 23.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_lp5c8"]
 radius = 24.0208
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lp5c8"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2htnq"]
+animation = &"LeftHandAttack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gv2vs"]
+animation = &"RightHandAttack"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7omvd"]
 animation = &"SETUP"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lp5c8"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xa0uu"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sntci"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"left_swipe"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jhu71"]
+advance_condition = &"right_swipe"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2htnq"]
+switch_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xa0uu"]
+states/Idle/node = SubResource("AnimationNodeAnimation_lp5c8")
+states/Idle/position = Vector2(469.44, 82.5575)
+states/LeftHandAttack/node = SubResource("AnimationNodeAnimation_2htnq")
+states/LeftHandAttack/position = Vector2(393.9, 207.37)
+states/RightHandAttack/node = SubResource("AnimationNodeAnimation_gv2vs")
+states/RightHandAttack/position = Vector2(609.7, 208.23)
 states/SETUP/node = SubResource("AnimationNodeAnimation_7omvd")
-states/SETUP/position = Vector2(319.06, 64.05)
-states/Start/position = Vector2(198.5, 98.375)
-transitions = ["Start", "SETUP", SubResource("AnimationNodeStateMachineTransition_lp5c8")]
-graph_offset = Vector2(-108.06, -1.94249)
+states/SETUP/position = Vector2(304.06, 101.025)
+states/Start/position = Vector2(139.5, 100.512)
+transitions = ["Start", "SETUP", SubResource("AnimationNodeStateMachineTransition_lp5c8"), "SETUP", "Idle", SubResource("AnimationNodeStateMachineTransition_xa0uu"), "Idle", "LeftHandAttack", SubResource("AnimationNodeStateMachineTransition_sntci"), "Idle", "RightHandAttack", SubResource("AnimationNodeStateMachineTransition_jhu71"), "LeftHandAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_2htnq")]
+graph_offset = Vector2(74.2199, 41.595)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gv2vs"]
 atlas = ExtResource("4_7omvd")
@@ -1170,6 +1202,7 @@ animations = [{
 size = Vector2(14, 29.6075)
 
 [node name="MasterGiant" type="Node2D"]
+script = ExtResource("1_gv2vs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1252,6 +1285,9 @@ shape = SubResource("CircleShape2D_lp5c8")
 active = false
 tree_root = SubResource("AnimationNodeStateMachine_xa0uu")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/left_swipe = false
+parameters/conditions/right_swipe = false
+script = ExtResource("4_2htnq")
 
 [node name="MGDeath" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 5)
