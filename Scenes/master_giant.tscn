@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cwb6f3qlo4mpl"]
+[gd_scene load_steps=29 format=3 uid="uid://cwb6f3qlo4mpl"]
 
 [ext_resource type="Texture2D" uid="uid://6ddjklopc4e" path="res://GameArt/CCMasterGiantHead.png" id="1_o2p3u"]
 [ext_resource type="Texture2D" uid="uid://c310no3s8h500" path="res://GameArt/CCMasterGiantLeftHand.png" id="2_4mstd"]
@@ -1095,21 +1095,6 @@ tracks/7/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_di18c"]
-resource_name = "death"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MGDeath:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_di18c"]
 _data = {
 &"Idle": SubResource("Animation_7omvd"),
@@ -1119,8 +1104,7 @@ _data = {
 &"RESET": SubResource("Animation_xa0uu"),
 &"RightHandAttack": SubResource("Animation_lp5c8"),
 &"RightHandBlast": SubResource("Animation_2htnq"),
-&"SETUP": SubResource("Animation_o2p3u"),
-&"death": SubResource("Animation_di18c")
+&"SETUP": SubResource("Animation_o2p3u")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7omvd"]
@@ -1270,7 +1254,7 @@ tree_root = SubResource("AnimationNodeStateMachine_xa0uu")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="MGDeath" type="AnimatedSprite2D" parent="."]
-position = Vector2(-55, -28)
+position = Vector2(0, 5)
 sprite_frames = SubResource("SpriteFrames_jhu71")
 frame = 3
 frame_progress = 1.0
