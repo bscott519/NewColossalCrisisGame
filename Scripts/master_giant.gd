@@ -19,5 +19,5 @@ func increase_idle_count():
 		attack()
 
 func attack():
-	var atk = atk_set
-	
+	var atk = atk_set[randi()%atk_set.size()]
+	animation_tree.set_condition(atk, true)
