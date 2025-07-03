@@ -1205,12 +1205,10 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sntci"]
-switch_mode = 2
 advance_mode = 2
 advance_condition = &"left_swipe"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jhu71"]
-advance_mode = 2
 advance_condition = &"right_swipe"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2htnq"]
@@ -1232,7 +1230,7 @@ states/SETUP/node = SubResource("AnimationNodeAnimation_7omvd")
 states/SETUP/position = Vector2(304.06, 101.025)
 states/Start/position = Vector2(139.5, 100.512)
 transitions = ["Start", "SETUP", SubResource("AnimationNodeStateMachineTransition_lp5c8"), "SETUP", "Idle", SubResource("AnimationNodeStateMachineTransition_xa0uu"), "Idle", "LeftHandAttack", SubResource("AnimationNodeStateMachineTransition_sntci"), "Idle", "RightHandAttack", SubResource("AnimationNodeStateMachineTransition_jhu71"), "LeftHandAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_2htnq"), "RightHandAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_gv2vs")]
-graph_offset = Vector2(178.38, 37.7325)
+graph_offset = Vector2(60.7602, 22.2825)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gv2vs"]
 atlas = ExtResource("4_7omvd")
