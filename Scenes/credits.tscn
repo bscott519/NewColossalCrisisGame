@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://xu4xkm74bgjk"]
+[gd_scene load_steps=4 format=3 uid="uid://xu4xkm74bgjk"]
 
 [ext_resource type="Script" uid="uid://boshnqps5b0mr" path="res://Scenes/credits.gd" id="1_gryuy"]
-[ext_resource type="Texture2D" uid="uid://c7awsvhvqdq0c" path="res://GameArt/Background.png" id="2_ccovl"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_r18jl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r18jl"]
+bg_color = Color(0.478431, 0.00392157, 0.662745, 1)
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -11,6 +15,7 @@ offset_bottom = 40.0
 script = ExtResource("1_gryuy")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,34 +24,39 @@ offset_right = 1112.0
 offset_bottom = 616.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_ccovl")
+texture = SubResource("CanvasTexture_r18jl")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 176.0
-offset_right = 1175.0
-offset_bottom = 386.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 44
-text = "Press A and D or Left/Right Arrow Keys to move
-Press Space to Jump
-Left Click to Attack
-Press P to Pause"
-
-[node name="Label2" type="Label" parent="."]
+[node name="CreditsLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 418.0
-offset_right = 659.0
-offset_bottom = 253.0
+offset_left = 432.0
+offset_top = 22.0
+offset_right = 673.0
+offset_bottom = 191.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 60
 text = "CREDITS
 "
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 130.0
+offset_right = 1133.0
+offset_bottom = 511.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 44
+text = "Made in Godot
+Knight Sprites by 
+In-Game Background by
+Sounds Assests by brackeys and 
+
+Everything else by Benjamin Scott"
+horizontal_alignment = 1
 
 [node name="Continue" type="Button" parent="."]
 layout_mode = 1
@@ -56,12 +66,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 892.0
-offset_top = 492.0
+offset_top = 516.0
 offset_right = 1068.0
-offset_bottom = 580.0
+offset_bottom = 604.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_r18jl")
 text = "Continue"
 
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
