@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ww5am231vcoq"]
 
-[ext_resource type="Script" uid="uid://bobiu2vrnrw3u" path="res://Scenes/endingscreen.gd" id="1_2aw4f"]
+[ext_resource type="Script" uid="uid://bobiu2vrnrw3u" path="res://Scripts/endingscreen.gd" id="1_2aw4f"]
 [ext_resource type="Texture2D" uid="uid://c7awsvhvqdq0c" path="res://GameArt/Background.png" id="2_2aw4f"]
 [ext_resource type="FontFile" uid="uid://bajqlmo0hm0fl" path="res://GameArt/Shouldve Known.otf" id="3_2aw4f"]
 

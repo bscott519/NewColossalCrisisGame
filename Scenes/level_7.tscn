@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cg8f8bxivoshb" path="res://GameArt/CCRock.png" id="7_2rdev"]
 [ext_resource type="Texture2D" uid="uid://cbs0mp8o4ukol" path="res://GameArt/CCW1Platform.png" id="8_5i4s6"]
 [ext_resource type="PackedScene" uid="uid://cigkhvsqha8dt" path="res://Scenes/heartscontainer.tscn" id="9_4thwd"]
+[ext_resource type="PackedScene" uid="uid://cabb5g6dppmsb" path="res://Scenes/finalflagpole.tscn" id="10_irpto"]
 [ext_resource type="PackedScene" uid="uid://14i14pawge6g" path="res://Scenes/health_power_up.tscn" id="10_wecx4"]
 [ext_resource type="PackedScene" uid="uid://b07naphow6dr2" path="res://Scenes/pause_menu.tscn" id="11_hfdvb"]
-[ext_resource type="PackedScene" uid="uid://pd0mic8diwl7" path="res://Scenes/flagpole.tscn" id="12_1r13y"]
 [ext_resource type="PackedScene" uid="uid://c7iym8qvw4i4e" path="res://Scenes/killzone.tscn" id="13_hb764"]
 [ext_resource type="AudioStream" uid="uid://b8dvr4re3ybsg" path="res://Sounds/Minifantasy_Dungeon_Music/Music/Goblins_Dance_(Battle).wav" id="14_td06s"]
 [ext_resource type="PackedScene" uid="uid://cwb6f3qlo4mpl" path="res://Scenes/master_giant.tscn" id="16_irpto"]
@@ -291,10 +291,9 @@ position = Vector2(2386, 78)
 [node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("11_hfdvb")]
 visible = false
 
-[node name="Flagpole" parent="." instance=ExtResource("12_1r13y")]
+[node name="FinalFlagpole" parent="." instance=ExtResource("10_irpto")]
 position = Vector2(4133, 33)
 scale = Vector2(4, 4)
-next_scene = "Level 2"
 
 [node name="Killzone" parent="." instance=ExtResource("13_hb764")]
 position = Vector2(1442, 435)
