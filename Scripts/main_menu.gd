@@ -22,3 +22,7 @@ func _on_quit_pressed():
 
 func _on_title_theme_finished():
 	$TitleTheme.play()
+
+func _on_credits_pressed():
+	Scenemanager.set_last_scene(get_tree().current_scene.scene_file_path)
+	get_tree().change_scene_to_file("res://Scenes/credits.tscn")

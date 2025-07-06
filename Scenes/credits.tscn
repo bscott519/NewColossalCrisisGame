@@ -50,11 +50,11 @@ offset_right = 1133.0
 offset_bottom = 511.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 44
-text = "Made in Godot
-Knight Sprites by 
-In-Game Background by
-Sounds Assests by brackeys and 
-
+text = "MADE IN GODOT
+Knight Sprites by aamatniekss (itch.io)
+In-Game Background by ZamCham (itch.io)
+Overworld Ground Assets by ZamCham (itch.io)
+Music and Sounds by Brackeys and Leohpaz (itch.io)
 Everything else by Benjamin Scott"
 horizontal_alignment = 1
 

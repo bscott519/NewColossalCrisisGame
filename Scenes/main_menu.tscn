@@ -92,6 +92,20 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_cdj7d")
 theme_override_styles/normal = SubResource("StyleBoxFlat_tay1g")
 text = "Controls"
 
+[node name="Credits" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rb4cd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d03m1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cdj7d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tay1g")
+text = "Credits"
+
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -166,5 +180,6 @@ autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="finished" from="TitleTheme" to="." method="_on_title_theme_finished"]
