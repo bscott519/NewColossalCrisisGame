@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://xu4xkm74bgjk"]
 
-[ext_resource type="Script" uid="uid://boshnqps5b0mr" path="res://Scenes/credits.gd" id="1_gryuy"]
+[ext_resource type="Script" uid="uid://boshnqps5b0mr" path="res://Scripts/credits.gd" id="1_gryuy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_r18jl"]
 

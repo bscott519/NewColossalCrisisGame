@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://ww5am231vcoq"]
+
+[ext_resource type="Script" uid="uid://bobiu2vrnrw3u" path="res://Scenes/endingscreen.gd" id="1_2aw4f"]
+[ext_resource type="Texture2D" uid="uid://c7awsvhvqdq0c" path="res://GameArt/Background.png" id="2_2aw4f"]
+[ext_resource type="FontFile" uid="uid://bajqlmo0hm0fl" path="res://GameArt/Shouldve Known.otf" id="3_2aw4f"]
+
+[node name="EndingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2aw4f")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1112.0
+offset_bottom = 616.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2aw4f")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 182.0
+offset_right = 1274.0
+offset_bottom = 267.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_2aw4f")
+theme_override_font_sizes/font_size = 60
+text = "THE COLOSSAL CRISIS IS OVER!"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 372.0
+offset_right = 847.0
+offset_bottom = 444.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_2aw4f")
+theme_override_font_sizes/font_size = 44
+text = "Thanks for playing!"
+
+[node name="Continue" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 892.0
+offset_top = 492.0
+offset_right = 1068.0
+offset_bottom = 580.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
