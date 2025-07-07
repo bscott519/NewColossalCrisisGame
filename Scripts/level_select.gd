@@ -18,8 +18,10 @@ func _input(event):
 		$PlayerIcon.global_position = cur_lvl.global_position
 	
 	if event.is_action_pressed("enter"):
-		if cur_lvl.next_scene_path:
+		if cur_lvl.next_scene_path and cur_lvl.next_scene_path in LevelManager.unlocked_lvls:
 			get_tree().change_scene_to_file(cur_lvl.next_scene_path)
+		else:
+			print("level is locked")
 
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

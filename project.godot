@@ -20,6 +20,7 @@ config/icon="res://GameArt/icon.svg"
 Global="*res://Scripts/global.gd"
 Scenemanager="*res://Scripts/scenemanager.gd"
 SaveData="*res://Scripts/savedata.gd"
+LevelManager="*res://Scripts/level_manager.gd"
 
 [display]
 
