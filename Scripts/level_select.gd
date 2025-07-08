@@ -5,6 +5,8 @@ class_name LevelSelect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	LevelManager.load_prog()
+	
 	$TitleTheme.play()
 	$TitleTheme.finished.connect(_on_title_theme_finished)
 	$PlayerIcon.global_position = cur_lvl.global_position

@@ -428,7 +428,7 @@ scale = Vector2(2, 2)
 [node name="Flagpole" parent="." instance=ExtResource("9_35cib")]
 position = Vector2(4085, -670)
 scale = Vector2(4, 4)
-next_scene = "Level 2"
+next_scene = "res://Scenes/level_4.tscn"
 
 [node name="Ccw1Platform" type="Sprite2D" parent="."]
 position = Vector2(1643, 30)

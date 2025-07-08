@@ -294,6 +294,7 @@ visible = false
 [node name="FinalFlagpole" parent="." instance=ExtResource("10_irpto")]
 position = Vector2(4133, 33)
 scale = Vector2(4, 4)
+next_scene = "res://Scenes/endingscreen.tscn"
 
 [node name="Killzone" parent="." instance=ExtResource("13_hb764")]
 position = Vector2(1442, 435)

@@ -402,7 +402,7 @@ visible = false
 [node name="Flagpole" parent="." instance=ExtResource("9_xc6js")]
 position = Vector2(4264, 66)
 scale = Vector2(4, 4)
-next_scene = "Level 2"
+next_scene = "res://Scenes/level_5.tscn"
 
 [node name="Ccw1Platform3" type="Sprite2D" parent="."]
 position = Vector2(1951, -39)

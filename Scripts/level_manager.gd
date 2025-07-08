@@ -1,12 +1,10 @@
 extends Node
 
-var unlocked_lvls: Array[String] = []
+var unlocked_lvls: Array[String] = ["res://Scenes/level_1.tscn"]
 const save_path := "user://progress.cfg"
 
 func _ready():
 	load_prog()
-	if unlocked_lvls.is_empty():
-		unlocked_lvls.append("res://Scenes/level_1.tscn")
 
 func unlock_lvl(lvl_name: String):
 	if not unlocked_lvls.has(lvl_name):
