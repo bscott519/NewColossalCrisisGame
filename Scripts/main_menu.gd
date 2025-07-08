@@ -26,3 +26,8 @@ func _on_title_theme_finished():
 func _on_credits_pressed():
 	Scenemanager.set_last_scene(get_tree().current_scene.scene_file_path)
 	get_tree().change_scene_to_file("res://Scenes/credits.tscn")
+
+func _on_new_game_pressed():
+	LevelManager.unlocked_lvls = ["res://Scenes/level_1.tscn"]
+	LevelManager.save_prog()
+	get_tree().change_scene_to_file("res://Scenes/level_select.tscn")
