@@ -12,6 +12,8 @@ func _ready():
 	$PlayerIcon.global_position = cur_lvl.global_position
 	
 	for icon in get_tree().get_nodes_in_group("level_icons"):
+		print("Checking icon for: ", icon.next_scene_path)
+		print("Is unlocked? ", icon.next_scene_path in LevelManager.unlocked_lvls)
 		var is_unlocked = icon.next_scene_path in LevelManager.unlocked_lvls
 		icon.set_locked(!is_unlocked)
 

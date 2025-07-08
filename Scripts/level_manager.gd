@@ -7,9 +7,13 @@ func _ready():
 	load_prog()
 
 func unlock_lvl(lvl_name: String):
+	print("Trying to unlock:", lvl_name)
 	if not unlocked_lvls.has(lvl_name):
 		unlocked_lvls.append(lvl_name)
 		save_prog()
+		print("Unlocked:", unlocked_lvls)
+	else:
+		print("Level already unlocked")
 
 func is_lvl_unlocked(lvl_name: String) -> bool:
 	return unlocked_lvls.has(lvl_name)
