@@ -10,7 +10,7 @@ colors = PackedColorArray(0.207843, 0.239216, 0.290196, 1)
 gradient = SubResource("Gradient_pwoou")
 width = 64
 
-[node name="LevelIcon" type="Control"]
+[node name="LevelIcon" type="Control" groups=["level_icons"]]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 64.0
