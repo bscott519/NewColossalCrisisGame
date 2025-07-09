@@ -196,6 +196,8 @@ func take_dmg(dmg, knockback_dir):
 		can_walk = false
 		velocity = Vector2.ZERO
 		
+		$BearDeath.play()
+		
 		$CBDealDamageArea/CollisionShape2D.set_deferred("disabled", true)
 		print("Enemy is dead. Disabling damage collision shape.")
 		
@@ -204,6 +206,7 @@ func take_dmg(dmg, knockback_dir):
 		print("Enemy is dying, playing death animation.")
 		
 		await get_tree().create_timer(1.0).timeout
+		await $BearDeath.finished
 		self.queue_free()
 	print(str(self), "current health is ", health)
 

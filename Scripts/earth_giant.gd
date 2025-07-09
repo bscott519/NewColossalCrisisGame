@@ -48,6 +48,9 @@ func _ready():
 	attack_cooldown.start()
 
 func _physics_process(delta):
+	if dead:
+		return
+	
 	$EGHealthBar.value = health
 	
 	match current_state:
@@ -77,6 +80,8 @@ func _physics_process(delta):
 		return
 
 func choose_attack():
+	if dead:
+		return
 	var rand = randi() % 3
 	match rand:
 		0: change_state(State.STOMP)
@@ -89,6 +94,8 @@ func _on_body_entered(body):
 		change_state(State.CHASE)
 
 func _on_attack_radius_body_entered(body):
+	if dead: 
+		return
 	if body.name == "player":
 		player = body
 		player_in_attack_radius = true
@@ -132,6 +139,8 @@ func spawn_rock():
 	get_tree().current_scene.add_child(projectile)
 
 func _on_animated_sprite_2d_animation_finished():
+	if dead:
+		return
 	match current_state:
 		State.STOMP, State.SLAM, State.SUMMON:
 			print("Finished attack animation:", current_state)
@@ -139,6 +148,8 @@ func _on_animated_sprite_2d_animation_finished():
 			attack_cooldown.start()
 
 func _on_attack_cooldown_timeout():
+	if dead:
+		return
 	if player_in_attack_radius:
 		choose_attack()
 
@@ -156,14 +167,20 @@ func take_dmg(dmg, knockback_dir):
 		velocity = Vector2.ZERO
 		emit_signal("boss_died")
 		
+		$EGDeath.play()
+		
 		$EGDealDamageArea/CollisionShape2D.set_deferred("disabled", true)
+		$CollisionShape2D.set_deferred("disabled", true)
 		print("Enemy is dead. Disabling damage collision shape.")
+		
+		$EGHealthBar.hide()
 		
 		animated_sprite_2d.stop()
 		animated_sprite_2d.play("death")
 		print("Enemy is dying, playing death animation.")
 		
 		await get_tree().create_timer(1.0).timeout
+		await $EGDeath.finished
 		self.queue_free()
 	print(str(self), "current health is ", health)
 

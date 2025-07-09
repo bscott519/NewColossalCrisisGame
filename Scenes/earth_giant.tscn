@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cbrjwdmbhictw"]
+[gd_scene load_steps=31 format=3 uid="uid://cbrjwdmbhictw"]
 
 [ext_resource type="Script" uid="uid://ba7kmamigg8am" path="res://Scripts/earth_giant.gd" id="1_kl2yr"]
 [ext_resource type="Texture2D" uid="uid://cbmek8v8jln14" path="res://GameArt/CCEarthGiantSS.png" id="1_obi7s"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://l1yxspaxqyio" path="res://GameArt/TMMEnemyDeath2.png" id="3_82jbl"]
 [ext_resource type="FontFile" uid="uid://bajqlmo0hm0fl" path="res://GameArt/Shouldve Known.otf" id="3_horgh"]
 [ext_resource type="Texture2D" uid="uid://hcy0hjwm1svq" path="res://GameArt/TMMEnemyDeath3.png" id="4_hlnqd"]
+[ext_resource type="AudioStream" uid="uid://drjvewt1v2ivs" path="res://Sounds/sounds/explosion.wav" id="7_82jbl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_msvhs"]
 atlas = ExtResource("2_71syd")
@@ -238,6 +239,9 @@ offset_bottom = 26.5715
 scale = Vector2(0.32, 1.00001)
 theme_override_fonts/font = ExtResource("3_horgh")
 text = "The Earth Giant"
+
+[node name="EGDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_82jbl")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

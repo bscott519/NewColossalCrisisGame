@@ -151,7 +151,7 @@ script = ExtResource("9_4r6f6")
 position = Vector2(-8, 44)
 shape = SubResource("RectangleShape2D_27t0l")
 
-[node name="BearDeath" type="AudioStreamPlayer2D" parent="."]
+[node name="BearDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_ipe36")
 
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
