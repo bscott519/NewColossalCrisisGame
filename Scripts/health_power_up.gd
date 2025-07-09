@@ -13,8 +13,10 @@ func _process(delta):
 func _on_health_pickup_body_entered(body):
 	if body.is_in_group("player"):
 		$HealthPick.play()
+		$healthPickup/CollisionShape2D.set_deferred("disabled", true)
 		if body.health < body.max_health: 
 			body.health = min(body.health + pickupAmount, body.max_health) 
 			body.healthChanged.emit(body.health)  
 			print("Player health increased to: ", body.health)
+		await $HealthPick.finished
 		queue_free()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dumid4qsmtgca" path="res://GameArt/CCHeartSS.png" id="1_4ewtl"]
 [ext_resource type="Script" uid="uid://bj32mo61um8gc" path="res://Scripts/health_power_up.gd" id="1_rbjpr"]
-[ext_resource type="AudioStream" uid="uid://b45nkx2j2mj6b" path="res://Sounds/sounds/power_up.wav" id="3_41u3l"]
+[ext_resource type="AudioStream" uid="uid://b1fol1pt60f5d" path="res://Sounds/sounds/jump.wav" id="3_yo8yi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1e2x4"]
 radius = 14.0
@@ -19,7 +19,8 @@ collision_layer = 8
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_1e2x4")
 
-[node name="HealthPick" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_41u3l")
+[node name="HealthPick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yo8yi")
+volume_db = -5.0
 
 [connection signal="body_entered" from="healthPickup" to="." method="_on_health_pickup_body_entered"]
