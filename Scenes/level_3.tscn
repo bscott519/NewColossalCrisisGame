@@ -580,7 +580,7 @@ position = Vector2(3730, -620)
 [node name="Point2" type="Marker2D" parent="darkknight4/PatrolPoints"]
 position = Vector2(4040, -620)
 
-[node name="LevelTheme" type="AudioStreamPlayer2D" parent="."]
+[node name="LevelTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_s765n")
 autoplay = true
 

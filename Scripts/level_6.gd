@@ -6,17 +6,16 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$LevelTheme.play()
-	$LevelTheme.finished.connect(_on_level_theme_finished)
+	$LevelTheme3.play()
+	$LevelTheme3.finished.connect(_on_level_theme_3_finished)
 	heartsContainer.setMaxHearts(player.max_health)
 	heartsContainer.updateHearts(player.health)
 	player.healthChanged.connect(heartsContainer.updateHearts)
 	pause_menu.hide()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func _on_level_theme_finished():
-	$LevelTheme.play()
+func _on_level_theme_3_finished():
+	$LevelTheme3.play()

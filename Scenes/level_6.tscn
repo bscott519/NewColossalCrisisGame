@@ -948,4 +948,9 @@ position = Vector2(4348, -756)
 scale = Vector2(7, 7)
 texture = ExtResource("17_6d83s")
 
+[node name="LevelTheme3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_dnhlx")
+autoplay = true
+
 [connection signal="finished" from="LevelTheme" to="." method="_on_level_theme_finished"]
+[connection signal="finished" from="LevelTheme3" to="." method="_on_level_theme_3_finished"]

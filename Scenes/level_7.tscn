@@ -328,5 +328,10 @@ shape = SubResource("RectangleShape2D_om74q")
 position = Vector2(3413, -196)
 scale = Vector2(3.5, 3.5)
 
+[node name="LevelTheme4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_td06s")
+autoplay = true
+
 [connection signal="finished" from="LevelTheme" to="." method="_on_level_theme_finished"]
 [connection signal="playerEntered" from="BossTrigger" to="BossDoor" method="_on_boss_trigger_player_entered"]
+[connection signal="finished" from="LevelTheme4" to="." method="_on_level_theme_4_finished"]

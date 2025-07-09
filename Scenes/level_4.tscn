@@ -611,7 +611,7 @@ position = Vector2(3272, 108)
 [node name="Point2" type="Marker2D" parent="colossabear/PatrolPoints"]
 position = Vector2(3954, 111)
 
-[node name="LevelTheme" type="AudioStreamPlayer2D" parent="."]
+[node name="LevelTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_ebc6n")
 autoplay = true
 

@@ -546,7 +546,7 @@ position = Vector2(1796, -347)
 scale = Vector2(2, 2)
 texture = ExtResource("13_dqwvt")
 
-[node name="LevelTheme" type="AudioStreamPlayer2D" parent="."]
+[node name="LevelTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_tdamg")
 autoplay = true
 

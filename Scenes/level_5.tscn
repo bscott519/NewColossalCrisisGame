@@ -423,5 +423,10 @@ position = Vector2(4294, -64)
 scale = Vector2(5, 5)
 texture = ExtResource("20_wrjdp")
 
+[node name="LevelTheme2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_eeulh")
+autoplay = true
+
 [connection signal="finished" from="LevelTheme" to="." method="_on_level_theme_finished"]
 [connection signal="playerEntered" from="BossTrigger" to="BossDoor" method="_on_boss_trigger_player_entered"]
+[connection signal="finished" from="LevelTheme2" to="." method="_on_level_theme_2_finished"]

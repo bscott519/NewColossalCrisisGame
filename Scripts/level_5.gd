@@ -6,8 +6,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$LevelTheme.play()
-	$LevelTheme.finished.connect(_on_level_theme_finished)
+	$LevelTheme2.play()
+	$LevelTheme2.finished.connect(_on_level_theme_2_finished)
 	heartsContainer.setMaxHearts(player.max_health)
 	heartsContainer.updateHearts(player.health)
 	player.healthChanged.connect(heartsContainer.updateHearts)
@@ -25,5 +25,5 @@ func _ready():
 func _process(delta):
 	pass
 
-func _on_level_theme_finished():
-	$LevelTheme.play()
+func _on_level_theme_2_finished():
+	$LevelTheme2.play()
