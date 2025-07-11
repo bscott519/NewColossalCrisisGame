@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cwb6f3qlo4mpl"]
+[gd_scene load_steps=48 format=3 uid="uid://cwb6f3qlo4mpl"]
 
 [ext_resource type="Script" uid="uid://docqnn50valoa" path="res://Scripts/master_giant.gd" id="1_gv2vs"]
 [ext_resource type="Texture2D" uid="uid://6ddjklopc4e" path="res://GameArt/CCMasterGiantHead.png" id="1_o2p3u"]
@@ -296,6 +296,18 @@ tracks/13/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AnimationTree:parameters/conditions/laser_eyes")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_4mstd"]
 resource_name = "LeftHandAttack"
@@ -427,7 +439,7 @@ tracks/10/path = NodePath("AnimationTree:parameters/conditions/left_swipe")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(1.96667),
+"times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -564,6 +576,18 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AnimationTree:parameters/conditions/left_blast")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(3),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -782,6 +806,42 @@ tracks/17/path = NodePath("AnimationTree:parameters/conditions/right_swipe")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("AnimationTree:parameters/conditions/laser_eyes")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("AnimationTree:parameters/conditions/left_blast")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("AnimationTree:parameters/conditions/right_blast")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -1059,6 +1119,18 @@ tracks/10/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AnimationTree:parameters/conditions/right_blast")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_o2p3u"]
 resource_name = "SETUP"
@@ -1188,11 +1260,20 @@ radius = 24.0208
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lp5c8"]
 animation = &"Idle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xa0uu"]
+animation = &"LaserEyes"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2htnq"]
 animation = &"LeftHandAttack"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sntci"]
+animation = &"LeftHandBlast"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gv2vs"]
 animation = &"RightHandAttack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jhu71"]
+animation = &"RightHandBlast"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7omvd"]
 animation = &"SETUP"
@@ -1201,11 +1282,9 @@ animation = &"SETUP"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xa0uu"]
-switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sntci"]
-advance_mode = 2
 advance_condition = &"left_swipe"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jhu71"]
@@ -1219,18 +1298,45 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h4x1j"]
+advance_mode = 2
+advance_condition = &"laser_eyes"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5svtm"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xwin3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lf2gu"]
+advance_mode = 2
+advance_condition = &"left_blast"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p8021"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pwjaw"]
+advance_mode = 2
+advance_condition = &"right_blast"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xa0uu"]
 states/Idle/node = SubResource("AnimationNodeAnimation_lp5c8")
 states/Idle/position = Vector2(469.44, 82.5575)
+states/LaserEyes/node = SubResource("AnimationNodeAnimation_xa0uu")
+states/LaserEyes/position = Vector2(191.301, 390.22)
 states/LeftHandAttack/node = SubResource("AnimationNodeAnimation_2htnq")
-states/LeftHandAttack/position = Vector2(393.9, 207.37)
+states/LeftHandAttack/position = Vector2(79.9, 269.3)
+states/LeftHandBlast/node = SubResource("AnimationNodeAnimation_sntci")
+states/LeftHandBlast/position = Vector2(454.301, 423.47)
 states/RightHandAttack/node = SubResource("AnimationNodeAnimation_gv2vs")
-states/RightHandAttack/position = Vector2(609.7, 208.23)
+states/RightHandAttack/position = Vector2(749.7, 138.73)
+states/RightHandBlast/node = SubResource("AnimationNodeAnimation_jhu71")
+states/RightHandBlast/position = Vector2(726.241, 329.57)
 states/SETUP/node = SubResource("AnimationNodeAnimation_7omvd")
 states/SETUP/position = Vector2(304.06, 101.025)
 states/Start/position = Vector2(139.5, 100.512)
-transitions = ["Start", "SETUP", SubResource("AnimationNodeStateMachineTransition_lp5c8"), "SETUP", "Idle", SubResource("AnimationNodeStateMachineTransition_xa0uu"), "Idle", "LeftHandAttack", SubResource("AnimationNodeStateMachineTransition_sntci"), "Idle", "RightHandAttack", SubResource("AnimationNodeStateMachineTransition_jhu71"), "LeftHandAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_2htnq"), "RightHandAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_gv2vs")]
-graph_offset = Vector2(60.7602, 22.2825)
+transitions = ["Start", "SETUP", SubResource("AnimationNodeStateMachineTransition_lp5c8"), "SETUP", "Idle", SubResource("AnimationNodeStateMachineTransition_xa0uu"), "Idle", "LeftHandAttack", SubResource("AnimationNodeStateMachineTransition_sntci"), "Idle", "RightHandAttack", SubResource("AnimationNodeStateMachineTransition_jhu71"), "LeftHandAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_2htnq"), "RightHandAttack", "Idle", SubResource("AnimationNodeStateMachineTransition_gv2vs"), "Idle", "LaserEyes", SubResource("AnimationNodeStateMachineTransition_h4x1j"), "LaserEyes", "Idle", SubResource("AnimationNodeStateMachineTransition_5svtm"), "LeftHandBlast", "Idle", SubResource("AnimationNodeStateMachineTransition_xwin3"), "Idle", "LeftHandBlast", SubResource("AnimationNodeStateMachineTransition_lf2gu"), "RightHandBlast", "Idle", SubResource("AnimationNodeStateMachineTransition_p8021"), "Idle", "RightHandBlast", SubResource("AnimationNodeStateMachineTransition_pwjaw")]
+graph_offset = Vector2(8.68071, 169.057)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gv2vs"]
 atlas = ExtResource("4_7omvd")
@@ -1350,7 +1456,10 @@ shape = SubResource("CircleShape2D_lp5c8")
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_xa0uu")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/laser_eyes = false
+parameters/conditions/left_blast = false
 parameters/conditions/left_swipe = false
+parameters/conditions/right_blast = false
 parameters/conditions/right_swipe = false
 script = ExtResource("4_2htnq")
 
@@ -1383,3 +1492,5 @@ texture = ExtResource("7_lp5c8")
 [node name="BeamCollisionShape2" type="CollisionShape2D" parent="MasterBeam2/BeamHurtBox2"]
 position = Vector2(0, 1.19626)
 shape = SubResource("RectangleShape2D_lp5c8")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
