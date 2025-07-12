@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @onready var animation_player = $AnimationPlayer
 @onready var animated_sprite_mg_death = $MGSprites/MGDeath
@@ -29,7 +29,7 @@ var dmg_cooldown: float = 1.0
 
 var current_state = State.IDLE
 var player = null
-var speed = 70
+var speed = 150
 var attack_range = 80
 var dead: bool = false
 var took_dmg: bool = false
@@ -64,8 +64,10 @@ func _physics_process(delta):
 			pass
 
 		State.CHASE:
-			if player:
+			if animation_player.current_animation != "idle":
 				animation_player.play("idle")
+				
+			if player:
 				var direction = (player.global_position - global_position).normalized()
 				velocity = direction * speed
 				velocity.y = 0
@@ -73,9 +75,9 @@ func _physics_process(delta):
 				move_and_slide()
 				
 				var dist = global_position.distance_to(player.global_position)
-				if dist < attack_range and !attack_cooldown.time_left > 0:
+				if dist < attack_range and attack_cooldown.time_left == 0:
 					choose_attack()
-					print("Distance to player:", dist)
+					attack_cooldown.start()
 				
 		State.LEFTSWIPE, State.RIGHTSWIPE, State.LEFTBLAST, State.RIGHTBLAST, State.LASEREYES:
 			velocity = Vector2.ZERO
@@ -184,6 +186,11 @@ func take_dmg(dmg, knockback_dir):
 		print("Enemy is dead. Disabling damage collision shape.")
 		
 		$EGHealthBar.hide()
+		
+		$MainCollisionShape2D.set_deferred("disabled", true) 
+		head_hurtbox.set_deferred("disabled", true)
+		left_hand_hurtbox.set_deferred("disabled", true)
+		right_hand_hurtbox.set_deferred("disabled", true)
 		
 		animation_player.stop()
 		animated_sprite_mg_death.play("death")

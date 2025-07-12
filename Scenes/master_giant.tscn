@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cwb6f3qlo4mpl"]
+[gd_scene load_steps=34 format=3 uid="uid://cwb6f3qlo4mpl"]
 
 [ext_resource type="Script" uid="uid://docqnn50valoa" path="res://Scripts/master_giant.gd" id="1_gv2vs"]
 [ext_resource type="Texture2D" uid="uid://6ddjklopc4e" path="res://GameArt/CCMasterGiantHead.png" id="1_o2p3u"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bgwhsne6x82d" path="res://GameArt/CCMasterBeam.png" id="7_lp5c8"]
 [ext_resource type="FontFile" uid="uid://bajqlmo0hm0fl" path="res://GameArt/Shouldve Known.otf" id="9_xa0uu"]
 [ext_resource type="AudioStream" uid="uid://drjvewt1v2ivs" path="res://Sounds/sounds/explosion.wav" id="10_sntci"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xa0uu"]
+height = 74.0
 
 [sub_resource type="Animation" id="Animation_7omvd"]
 resource_name = "Idle"
@@ -1183,16 +1186,19 @@ bg_color = Color(0.478431, 0.00392157, 0.662745, 1)
 size = Vector2(228, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sntci"]
-size = Vector2(75, 31)
+size = Vector2(51, 31)
 
-[node name="MasterGiant" type="Node2D" groups=["enemies"]]
+[node name="MasterGiant" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_gv2vs")
+
+[node name="MainCollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_xa0uu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_di18c")
 }
-autoplay = "SETUP"
+autoplay = "Idle"
 
 [node name="MGSprites" type="Node2D" parent="."]
 
@@ -1303,9 +1309,9 @@ one_shot = true
 
 [node name="MGHealthBar" type="ProgressBar" parent="."]
 offset_left = -39.0
-offset_top = -45.0
+offset_top = 96.0
 offset_right = 39.0
-offset_bottom = -18.0
+offset_bottom = 123.0
 scale = Vector2(1, 0.279998)
 theme_override_styles/background = SubResource("StyleBoxFlat_jhu71")
 theme_override_styles/fill = SubResource("StyleBoxFlat_h4x1j")
@@ -1333,13 +1339,13 @@ position = Vector2(-2, 10)
 shape = SubResource("RectangleShape2D_xa0uu")
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 2.0
 
 [node name="AttackRadius" type="Area2D" parent="."]
 position = Vector2(0, 57)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius"]
-position = Vector2(-2.5, 14.5)
+position = Vector2(-1, 15)
 shape = SubResource("RectangleShape2D_sntci")
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="AttackRadius" to="." method="_on_attack_radius_body_entered"]
+[connection signal="body_exited" from="AttackRadius" to="." method="_on_attack_radius_body_exited"]
