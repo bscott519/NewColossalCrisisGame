@@ -239,7 +239,7 @@ func _on_right_hand_hitbox_body_entered(body):
 
 func _on_left_hand_hitbox_body_entered(body):
 	if can_dmg and body.is_in_group("player"):
-		print("Player entered Master Giant Right Hand.")
+		print("Player entered Master Giant Left Hand.")
 		var knockback_dir = (body.global_position - global_position).normalized()
 		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
 		can_dmg = false
@@ -247,23 +247,43 @@ func _on_left_hand_hitbox_body_entered(body):
 
 func _on_head_hit_box_body_entered(body):
 	if can_dmg and body.is_in_group("player"):
-		print("Player entered Master Giant Right Hand.")
+		print("Player entered Master Giant Head.")
 		var knockback_dir = (body.global_position - global_position).normalized()
 		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
 		can_dmg = false
 		start_dmg_cooldown()
 
+func mg_fire_beam_1():
+	$MGSprites/MasterBeam/BeamHurtBox.monitoring = true
+	$MGSprites/MasterBeam/BeamHurtBox/BeamCollisionShape.disabled = false
+	$MGSprites/MasterBeam/BeamHurtBox.visible = true
+
+func mg_stop_beam_1():
+	$MGSprites/MasterBeam/BeamHurtBox.monitoring = false
+	$MGSprites/MasterBeam/BeamHurtBox/BeamCollisionShape.disabled = true
+	$MGSprites/MasterBeam/BeamHurtBox.visible = false
+
+func mg_fire_beam_2():
+	$MGSprites/MasterBeam2/BeamHurtBox2.monitoring = true
+	$MGSprites/MasterBeam2/BeamHurtBox2/BeamCollisionShape2.disabled = false
+	$MGSprites/MasterBeam2/BeamHurtBox2.visible = true
+
+func mg_stop_beam_2():
+	$MGSprites/MasterBeam2/BeamHurtBox2.monitoring = false
+	$MGSprites/MasterBeam2/BeamHurtBox2/BeamCollisionShape2.disabled = true
+	$MGSprites/MasterBeam2/BeamHurtBox2.visible = false
+
 func _on_beam_hurt_box_body_entered(body):
-	if can_dmg and body.is_in_group("player") and visible:
-		print("Player entered Master Giant Right Hand.")
+	if can_dmg and body.is_in_group("player"):
+		print("Player entered Master Giant laser 1.")
 		var knockback_dir = (body.global_position - global_position).normalized()
 		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
 		can_dmg = false
 		start_dmg_cooldown()
 
 func _on_beam_hurt_box_2_body_entered(body):
-	if can_dmg and body.is_in_group("player") and visible:
-		print("Player entered Master Giant Right Hand.")
+	if can_dmg and body.is_in_group("player"):
+		print("Player entered Master Giant laser 2.")
 		var knockback_dir = (body.global_position - global_position).normalized()
 		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
 		can_dmg = false
