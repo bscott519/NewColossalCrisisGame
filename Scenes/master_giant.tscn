@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cwb6f3qlo4mpl"]
+[gd_scene load_steps=35 format=3 uid="uid://cwb6f3qlo4mpl"]
 
 [ext_resource type="Script" uid="uid://docqnn50valoa" path="res://Scripts/master_giant.gd" id="1_gv2vs"]
 [ext_resource type="Texture2D" uid="uid://6ddjklopc4e" path="res://GameArt/CCMasterGiantHead.png" id="1_o2p3u"]
@@ -1127,6 +1127,10 @@ _data = {
 &"SETUP": SubResource("Animation_o2p3u")
 }
 
+[sub_resource type="GDScript" id="GDScript_xa0uu"]
+script/source = "extends Area2D
+"
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7omvd"]
 radius = 26.5
 height = 68.0
@@ -1212,6 +1216,7 @@ texture = ExtResource("1_o2p3u")
 [node name="HeadHurtbox" type="Area2D" parent="MGSprites/Head/CcMasterGiantHead"]
 position = Vector2(0, -4.54545)
 scale = Vector2(0.909091, 0.909091)
+script = SubResource("GDScript_xa0uu")
 
 [node name="HCollisionShape2D" type="CollisionShape2D" parent="MGSprites/Head/CcMasterGiantHead/HeadHurtbox"]
 position = Vector2(-2, 3)
@@ -1339,6 +1344,7 @@ position = Vector2(-2, 10)
 shape = SubResource("RectangleShape2D_xa0uu")
 
 [node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 3.0
 
 [node name="AttackRadius" type="Area2D" parent="."]
 position = Vector2(0, 57)
@@ -1347,5 +1353,9 @@ position = Vector2(0, 57)
 position = Vector2(-1, 15)
 shape = SubResource("RectangleShape2D_sntci")
 
+[connection signal="area_entered" from="MGSprites/Head/CcMasterGiantHead/HeadHurtbox" to="." method="_on_head_hurtbox_area_entered"]
+[connection signal="area_entered" from="MGSprites/RightHand/CcMasterGiantRighHand/RightHandHurtbox" to="." method="_on_right_hand_hurtbox_area_entered"]
+[connection signal="area_entered" from="MGSprites/LeftHand/CcMasterGiantLeftHand/LeftHandHurtbox" to="." method="_on_left_hand_hurtbox_area_entered"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="body_entered" from="AttackRadius" to="." method="_on_attack_radius_body_entered"]
 [connection signal="body_exited" from="AttackRadius" to="." method="_on_attack_radius_body_exited"]

@@ -13,12 +13,12 @@ func _ready():
 	player.healthChanged.connect(heartsContainer.updateHearts)
 	pause_menu.hide()
 	
-	#var boss = 
+	var boss = $MasterGiant
 	var door1 = $BossDoor
 	var door2 = $BossDoor2
 	
-	#boss.master_giant_died.connect(door1.open_doors)
-	#boss.master_giant_died.connect(door2.open_doors)
+	boss.master_giant_died.connect(door1.open_doors)
+	boss.master_giant_died.connect(door2.open_doors)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

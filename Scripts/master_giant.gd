@@ -30,7 +30,7 @@ var dmg_cooldown: float = 1.0
 var current_state = State.IDLE
 var player = null
 var speed = 150
-var attack_range = 80
+var attack_range = 90
 var dead: bool = false
 var took_dmg: bool = false
 var health = 15
@@ -60,8 +60,8 @@ func _physics_process(delta):
 	
 	match current_state:
 		State.IDLE:
-			# Do nothing until player is found
-			pass
+			if animation_player.current_animation != "idle":
+				animation_player.play("idle")
 
 		State.CHASE:
 			if animation_player.current_animation != "idle":
@@ -106,8 +106,8 @@ func _on_attack_radius_body_entered(body):
 	if body.name == "player":
 		player = body
 		player_in_attack_radius = true
-		print("Player entered attack radius")
 		choose_attack()
+		print("Player entered attack radius")
 
 func _on_attack_radius_body_exited(body):
 	if body.name == "player":
@@ -123,6 +123,7 @@ func change_state(new_state):
 			#enable_eg_damage_area.start(0.5)
 			#disable_eg_damage_area.start(0.8)
 			attack_cooldown.start()
+
 			
 		State.RIGHTSWIPE:
 			print("Entering RIGHTSWIPE")
@@ -131,7 +132,7 @@ func change_state(new_state):
 			#enable_eg_damage_area.start(0.3)
 			#disable_eg_damage_area.start(0.6)
 			attack_cooldown.start()
-			
+
 		State.LEFTBLAST:
 			print("Entering LEFTBLAST")
 			velocity = Vector2.ZERO
@@ -156,8 +157,8 @@ func _on_animation_player_animation_finished(anim_name):
 	match current_state:
 		State.LEFTSWIPE, State.RIGHTSWIPE, State.LEFTBLAST, State.RIGHTBLAST, State.LASEREYES:
 			print("Finished attack animation:", current_state)
-			change_state(State.CHASE)
-			attack_cooldown.start()
+			if player_in_attack_radius:
+				change_state(State.CHASE)
 
 func _on_attack_cooldown_timeout():
 	if dead:
@@ -177,7 +178,7 @@ func take_dmg(dmg, knockback_dir):
 		is_chasing = false
 		can_walk = false
 		velocity = Vector2.ZERO
-		emit_signal("boss_died")
+		emit_signal("master_giant_died")
 		
 		$MGDeath.play()
 		

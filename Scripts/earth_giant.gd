@@ -55,7 +55,6 @@ func _physics_process(delta):
 	
 	match current_state:
 		State.IDLE:
-			# Do nothing until player is found
 			pass
 
 		State.CHASE:
