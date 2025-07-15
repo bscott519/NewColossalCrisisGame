@@ -64,25 +64,22 @@ func _physics_process(delta):
 				animation_player.play("idle")
 
 		State.CHASE:
-			if animation_player.current_animation != "idle":
-				animation_player.play("idle")
-				
 			if player:
 				var direction = (player.global_position - global_position).normalized()
 				velocity = direction * speed
 				velocity.y = 0
-				
 				move_and_slide()
 				
+				if animation_player.current_animation != "chase":
+					animation_player.play("chase")
+					
 				var dist = global_position.distance_to(player.global_position)
 				if dist < attack_range and attack_cooldown.time_left == 0:
 					choose_attack()
 					attack_cooldown.start()
-				
+			
 		State.LEFTSWIPE, State.RIGHTSWIPE, State.LEFTBLAST, State.RIGHTBLAST, State.LASEREYES:
 			velocity = Vector2.ZERO
-	if current_state in [State.LEFTSWIPE, State.RIGHTSWIPE, State.LEFTBLAST, State.RIGHTBLAST, State.LASEREYES]:
-		return
 
 func choose_attack():
 	if dead:
@@ -124,7 +121,6 @@ func change_state(new_state):
 			#disable_eg_damage_area.start(0.8)
 			attack_cooldown.start()
 
-			
 		State.RIGHTSWIPE:
 			print("Entering RIGHTSWIPE")
 			velocity = Vector2.ZERO
@@ -154,11 +150,9 @@ func change_state(new_state):
 func _on_animation_player_animation_finished(anim_name):
 	if dead:
 		return
-	match current_state:
-		State.LEFTSWIPE, State.RIGHTSWIPE, State.LEFTBLAST, State.RIGHTBLAST, State.LASEREYES:
+	if current_state in [State.LEFTSWIPE, State.RIGHTSWIPE, State.LEFTBLAST, State.RIGHTBLAST, State.LASEREYES]:
 			print("Finished attack animation:", current_state)
-			if player_in_attack_radius:
-				change_state(State.CHASE)
+			change_state(State.CHASE)
 
 func _on_attack_cooldown_timeout():
 	if dead:

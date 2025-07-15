@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cwb6f3qlo4mpl"]
+[gd_scene load_steps=36 format=3 uid="uid://cwb6f3qlo4mpl"]
 
 [ext_resource type="Script" uid="uid://docqnn50valoa" path="res://Scripts/master_giant.gd" id="1_gv2vs"]
 [ext_resource type="Texture2D" uid="uid://6ddjklopc4e" path="res://GameArt/CCMasterGiantHead.png" id="1_o2p3u"]
@@ -1115,6 +1115,121 @@ tracks/7/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_jhu71"]
+resource_name = "Chase"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MGSprites/Head/CcMasterGiantHead:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, 14), Vector2(0, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MGSprites/Head/CcMasterGiantHead:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MGSprites/LeftHand/CcMasterGiantLeftHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(50.6, 41.6), Vector2(54, 38)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MGSprites/LeftHand/CcMasterGiantLeftHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MGSprites/RightHand/CcMasterGiantRighHand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-50.6, 41.6), Vector2(-54, 38)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MGSprites/RightHand/CcMasterGiantRighHand:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MGSprites/MasterBeam:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MGSprites/MasterBeam2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"increase_idle_count"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_di18c"]
 _data = {
 &"Idle": SubResource("Animation_7omvd"),
@@ -1124,7 +1239,8 @@ _data = {
 &"RESET": SubResource("Animation_xa0uu"),
 &"RightHandAttack": SubResource("Animation_lp5c8"),
 &"RightHandBlast": SubResource("Animation_2htnq"),
-&"SETUP": SubResource("Animation_o2p3u")
+&"SETUP": SubResource("Animation_o2p3u"),
+&"chase": SubResource("Animation_jhu71")
 }
 
 [sub_resource type="GDScript" id="GDScript_xa0uu"]
