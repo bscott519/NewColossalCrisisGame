@@ -180,7 +180,7 @@ func take_dmg(dmg, knockback_dir):
 		#$CollisionShape2D.set_deferred("disabled", true)
 		print("Enemy is dead. Disabling damage collision shape.")
 		
-		$EGHealthBar.hide()
+		$MGHealthBar.hide()
 		
 		$MainCollisionShape2D.set_deferred("disabled", true) 
 		head_hurtbox.set_deferred("disabled", true)
@@ -210,14 +210,6 @@ func apply_knockback(knockback_dir: Vector2):
 	velocity.x = 0
 	
 	move_and_slide()
-	
-#func _on_eg_deal_damage_area_body_entered(body):
-	#if can_dmg and body.is_in_group("player"):
-		#print("Player entered EGDealDamageArea.")
-		#var knockback_dir = (body.global_position - global_position).normalized()
-		#body.plyr_take_dmg(dmg_to_deal, knockback_dir)
-		#can_dmg = false
-		#start_dmg_cooldown()
 
 func start_dmg_cooldown():
 	await get_tree().create_timer(dmg_cooldown).timeout
@@ -236,3 +228,43 @@ func enable_eg_timer():
 func disable_eg_timer():
 	$EGDealDamageArea/CollisionShape2D.disabled = true
 	is_deal_dmg = false
+
+func _on_right_hand_hitbox_body_entered(body):
+	if can_dmg and body.is_in_group("player"):
+		print("Player entered Master Giant Right Hand.")
+		var knockback_dir = (body.global_position - global_position).normalized()
+		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
+		can_dmg = false
+		start_dmg_cooldown()
+
+func _on_left_hand_hitbox_body_entered(body):
+	if can_dmg and body.is_in_group("player"):
+		print("Player entered Master Giant Right Hand.")
+		var knockback_dir = (body.global_position - global_position).normalized()
+		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
+		can_dmg = false
+		start_dmg_cooldown()
+
+func _on_head_hit_box_body_entered(body):
+	if can_dmg and body.is_in_group("player"):
+		print("Player entered Master Giant Right Hand.")
+		var knockback_dir = (body.global_position - global_position).normalized()
+		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
+		can_dmg = false
+		start_dmg_cooldown()
+
+func _on_beam_hurt_box_body_entered(body):
+	if can_dmg and body.is_in_group("player") and visible:
+		print("Player entered Master Giant Right Hand.")
+		var knockback_dir = (body.global_position - global_position).normalized()
+		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
+		can_dmg = false
+		start_dmg_cooldown()
+
+func _on_beam_hurt_box_2_body_entered(body):
+	if can_dmg and body.is_in_group("player") and visible:
+		print("Player entered Master Giant Right Hand.")
+		var knockback_dir = (body.global_position - global_position).normalized()
+		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
+		can_dmg = false
+		start_dmg_cooldown()
