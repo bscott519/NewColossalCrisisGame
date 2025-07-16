@@ -1,10 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://cg4v8rai28a26"]
+[gd_scene load_steps=23 format=3 uid="uid://cg4v8rai28a26"]
 
 [ext_resource type="Script" uid="uid://r1paro7iqiek" path="res://Scripts/level_7.gd" id="1_gn553"]
-[ext_resource type="Texture2D" uid="uid://c7awsvhvqdq0c" path="res://GameArt/Background.png" id="2_f8wta"]
+[ext_resource type="Texture2D" uid="uid://8cx7tt73xvj0" path="res://GameArt/CCCastleInterior.png" id="2_gn553"]
 [ext_resource type="Texture2D" uid="uid://c2vdlh6wda0jf" path="res://GameArt/TileSet-36x36.png" id="3_j020x"]
 [ext_resource type="PackedScene" uid="uid://b5lm45fuex5bw" path="res://Scenes/player.tscn" id="4_e4jnh"]
-[ext_resource type="Texture2D" uid="uid://cg8f8bxivoshb" path="res://GameArt/CCRock.png" id="7_2rdev"]
 [ext_resource type="Texture2D" uid="uid://cbs0mp8o4ukol" path="res://GameArt/CCW1Platform.png" id="8_5i4s6"]
 [ext_resource type="PackedScene" uid="uid://cigkhvsqha8dt" path="res://Scenes/heartscontainer.tscn" id="9_4thwd"]
 [ext_resource type="PackedScene" uid="uid://cabb5g6dppmsb" path="res://Scenes/finalflagpole.tscn" id="10_irpto"]
@@ -73,9 +72,6 @@ size = Vector2(26, 154)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ft2ke"]
 size = Vector2(20, 154.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrjdp"]
-size = Vector2(43.7776, 5.83333)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3b0ud"]
 size = Vector2(12.1212, 4.11765)
 
@@ -88,80 +84,11 @@ size = Vector2(140, 75)
 position = Vector2(0, 1)
 script = ExtResource("1_gn553")
 
-[node name="Background5" type="Sprite2D" parent="."]
-position = Vector2(3086, 139)
-rotation = -3.14159
-scale = Vector2(2.44737, 1.452)
-texture = ExtResource("2_f8wta")
-flip_h = true
-
-[node name="Background6" type="Sprite2D" parent="."]
-position = Vector2(4011, 138)
-rotation = -3.14159
-scale = Vector2(2.44737, 1.452)
-texture = ExtResource("2_f8wta")
-flip_h = true
-
-[node name="Background7" type="Sprite2D" parent="."]
-position = Vector2(4940, 138)
-rotation = -3.14159
-scale = Vector2(2.44737, 1.452)
-texture = ExtResource("2_f8wta")
-flip_h = true
-
-[node name="Background3" type="Sprite2D" parent="."]
-position = Vector2(2294, 56)
+[node name="CcCastleInterior" type="Sprite2D" parent="."]
+position = Vector2(3147.51, -81.4337)
 rotation = 3.14159
-scale = Vector2(2.44737, 1.452)
-texture = ExtResource("2_f8wta")
-
-[node name="Background4" type="Sprite2D" parent="Background3"]
-position = Vector2(-380, 6.10352e-05)
-texture = ExtResource("2_f8wta")
-flip_h = true
-
-[node name="Background5" type="Sprite2D" parent="Background3"]
-position = Vector2(-380, 248.276)
-texture = ExtResource("2_f8wta")
-flip_h = true
-flip_v = true
-
-[node name="Background4" type="Sprite2D" parent="."]
-position = Vector2(4153, 56)
-rotation = 3.14159
-scale = Vector2(2.44737, 1.452)
-texture = ExtResource("2_f8wta")
-
-[node name="Background4" type="Sprite2D" parent="Background4"]
-position = Vector2(-380, 6.10352e-05)
-texture = ExtResource("2_f8wta")
-flip_h = true
-
-[node name="Background9" type="Sprite2D" parent="."]
-position = Vector2(4153, -304.496)
-rotation = 3.14159
-scale = Vector2(2.44737, 1.452)
-texture = ExtResource("2_f8wta")
-flip_v = true
-
-[node name="Background4" type="Sprite2D" parent="Background9"]
-position = Vector2(-380, 6.10352e-05)
-texture = ExtResource("2_f8wta")
-flip_h = true
-flip_v = true
-
-[node name="Background10" type="Sprite2D" parent="."]
-position = Vector2(1374, -304.496)
-rotation = 3.14159
-scale = Vector2(2.44737, 1.452)
-texture = ExtResource("2_f8wta")
-flip_v = true
-
-[node name="Background4" type="Sprite2D" parent="Background10"]
-position = Vector2(-380, 6.10352e-05)
-texture = ExtResource("2_f8wta")
-flip_h = true
-flip_v = true
+scale = Vector2(69.9468, 21.236)
+texture = ExtResource("2_gn553")
 
 [node name="GroundTileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_olkdc")
@@ -188,54 +115,6 @@ limit_top = -400
 limit_right = 5550
 limit_bottom = 320
 
-[node name="Ccw1Platform7" type="Sprite2D" parent="."]
-position = Vector2(3021, -40)
-scale = Vector2(1.5, 1.2)
-texture = ExtResource("7_2rdev")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Ccw1Platform7"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ccw1Platform7/StaticBody2D"]
-position = Vector2(1.33325, -12.5)
-shape = SubResource("RectangleShape2D_wrjdp")
-one_way_collision = true
-
-[node name="Ccw1Platform9" type="Sprite2D" parent="."]
-position = Vector2(3135, -118)
-scale = Vector2(1.8, 1.5)
-texture = ExtResource("7_2rdev")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Ccw1Platform9"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ccw1Platform9/StaticBody2D"]
-position = Vector2(0.77771, -12.5)
-shape = SubResource("RectangleShape2D_wrjdp")
-one_way_collision = true
-
-[node name="Ccw1Platform10" type="Sprite2D" parent="."]
-position = Vector2(3556, -118)
-scale = Vector2(1.8, 1.5)
-texture = ExtResource("7_2rdev")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Ccw1Platform10"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ccw1Platform10/StaticBody2D"]
-position = Vector2(0.77771, -12.5)
-shape = SubResource("RectangleShape2D_wrjdp")
-one_way_collision = true
-
-[node name="Ccw1Platform8" type="Sprite2D" parent="."]
-position = Vector2(3671, -40)
-scale = Vector2(1.5, 1.2)
-texture = ExtResource("7_2rdev")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Ccw1Platform8"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ccw1Platform8/StaticBody2D"]
-position = Vector2(1.33325, -12.5)
-shape = SubResource("RectangleShape2D_wrjdp")
-one_way_collision = true
-
 [node name="Ccw1Platform4" type="Sprite2D" parent="."]
 position = Vector2(2983, 21)
 scale = Vector2(5.28, 3.4)
@@ -249,7 +128,7 @@ shape = SubResource("RectangleShape2D_3b0ud")
 one_way_collision = true
 
 [node name="Ccw1Platform5" type="Sprite2D" parent="."]
-position = Vector2(3729, 21)
+position = Vector2(3782, 21)
 scale = Vector2(5.28, 3.4)
 texture = ExtResource("8_5i4s6")
 
@@ -265,26 +144,17 @@ one_way_collision = true
 [node name="Hearts" parent="CanvasLayer" instance=ExtResource("9_4thwd")]
 scale = Vector2(2, 2)
 
-[node name="healthPowerUp" parent="." instance=ExtResource("10_wecx4")]
-position = Vector2(2501, 79)
-
 [node name="healthPowerUp4" parent="." instance=ExtResource("10_wecx4")]
-position = Vector2(3155, -156)
-
-[node name="healthPowerUp3" parent="." instance=ExtResource("10_wecx4")]
-position = Vector2(2445, 79)
+position = Vector2(3003, 1)
 
 [node name="healthPowerUp6" parent="." instance=ExtResource("10_wecx4")]
-position = Vector2(3118, -156)
+position = Vector2(2966, 1)
 
 [node name="healthPowerUp7" parent="." instance=ExtResource("10_wecx4")]
-position = Vector2(3574, -156)
+position = Vector2(3801, 2)
 
 [node name="healthPowerUp8" parent="." instance=ExtResource("10_wecx4")]
-position = Vector2(3537, -156)
-
-[node name="healthPowerUp5" parent="." instance=ExtResource("10_wecx4")]
-position = Vector2(2386, 78)
+position = Vector2(3764, 2)
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
