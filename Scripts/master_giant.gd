@@ -166,13 +166,18 @@ func _on_attack_cooldown_timeout():
 		choose_attack()
 
 func take_dmg(dmg, knockback_dir):
+	if dead:
+		return
+	
 	health -= dmg
+	print("Master Giant takes ", dmg, " damage. Health now: ", health)
 	apply_knockback(knockback_dir)
 	took_dmg = true
+	
 	if health <= min_health:
 		health = min_health
-		current_state = State.DEATH
 		dead = true
+		current_state = State.DEATH
 		animated_sprite_mg_death.play("death")
 		is_chasing = false
 		can_walk = false
@@ -180,11 +185,7 @@ func take_dmg(dmg, knockback_dir):
 		emit_signal("master_giant_died")
 		
 		$MGDeath.play()
-		
-		#$EGDealDamageArea/CollisionShape2D.set_deferred("disabled", true)
-		#$CollisionShape2D.set_deferred("disabled", true)
 		print("Enemy is dead. Disabling damage collision shape.")
-		
 		$MGHealthBar.hide()
 		
 		$MainCollisionShape2D.set_deferred("disabled", true) 
@@ -193,13 +194,9 @@ func take_dmg(dmg, knockback_dir):
 		right_hand_hurtbox.set_deferred("disabled", true)
 		
 		animation_player.stop()
-		animated_sprite_mg_death.play("death")
-		print("Enemy is dying, playing death animation.")
-		
 		await get_tree().create_timer(1.0).timeout
 		await $MGDeath.finished
 		self.queue_free()
-	print(str(self), "current health is ", health)
 
 func apply_knockback(knockback_dir: Vector2):
 	if is_knocked_back:
@@ -234,27 +231,27 @@ func disable_eg_timer():
 	$EGDealDamageArea/CollisionShape2D.disabled = true
 	is_deal_dmg = false
 
-func _on_right_hand_hitbox_body_entered(body):
-	if can_dmg and body.is_in_group("player"):
-		print("Player entered Master Giant Right Hand.")
-		var knockback_dir = (body.global_position - global_position).normalized()
-		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
-		can_dmg = false
-		start_dmg_cooldown()
-
-func _on_left_hand_hitbox_body_entered(body):
-	if can_dmg and body.is_in_group("player"):
-		print("Player entered Master Giant Left Hand.")
-		var knockback_dir = (body.global_position - global_position).normalized()
-		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
-		can_dmg = false
-		start_dmg_cooldown()
-
-func _on_head_hit_box_body_entered(body):
-	if can_dmg and body.is_in_group("player"):
+func _on_head_hit_box_area_entered(area):
+	if can_dmg and area.is_in_group("damagezone"):
 		print("Player entered Master Giant Head.")
-		var knockback_dir = (body.global_position - global_position).normalized()
-		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
+		var knockback_dir = (area.global_position - global_position).normalized()
+		take_dmg(dmg_to_deal, knockback_dir)
+		can_dmg = false
+		start_dmg_cooldown()
+
+func _on_right_hand_hitbox_area_entered(area):
+	if can_dmg and area.is_in_group("damagezone"):
+		print("Player entered Master Giant Right Hand.")
+		var knockback_dir = (area.global_position - global_position).normalized()
+		take_dmg(dmg_to_deal, knockback_dir)
+		can_dmg = false
+		start_dmg_cooldown()
+
+func _on_left_hand_hitbox_area_entered(area):
+	if can_dmg and area.is_in_group("damagezone"):
+		print("Player entered Master Giant Left Hand.")
+		var knockback_dir = (area.global_position - global_position).normalized()
+		take_dmg(dmg_to_deal, knockback_dir)
 		can_dmg = false
 		start_dmg_cooldown()
 
@@ -265,19 +262,19 @@ func mg_fire_beam_1():
 	$MGSprites/MasterBeam/BeamHurtBox.visible = true
 
 func mg_stop_beam_1():
-	var beam_1_can_dmg = false
+	beam_1_can_dmg = false
 	$MGSprites/MasterBeam/BeamHurtBox.monitoring = false
 	$MGSprites/MasterBeam/BeamHurtBox/BeamCollisionShape.disabled = true
 	$MGSprites/MasterBeam/BeamHurtBox.visible = false
 
 func mg_fire_beam_2():
-	var beam_2_can_dmg = true
+	beam_2_can_dmg = true
 	$MGSprites/MasterBeam2/BeamHurtBox2.monitoring = true
 	$MGSprites/MasterBeam2/BeamHurtBox2/BeamCollisionShape2.disabled = false
 	$MGSprites/MasterBeam2/BeamHurtBox2.visible = true
 
 func mg_stop_beam_2():
-	var beam_2_can_dmg = false
+	beam_2_can_dmg = false
 	$MGSprites/MasterBeam2/BeamHurtBox2.monitoring = false
 	$MGSprites/MasterBeam2/BeamHurtBox2/BeamCollisionShape2.disabled = true
 	$MGSprites/MasterBeam2/BeamHurtBox2.visible = false
@@ -292,6 +289,7 @@ func _on_beam_hurt_box_body_entered(body):
 
 func _on_beam_hurt_box_2_body_entered(body):
 	print("Beam 2 body entered:", body)
+	print("can_dmg: ", can_dmg, "beam_2_can_dmg: ", beam_2_can_dmg, "is player? ", body.is_in_group("player"))
 	if can_dmg and beam_2_can_dmg and body.is_in_group("player"):
 		print("Player entered Master Giant laser 2.")
 		var knockback_dir = (body.global_position - global_position).normalized()

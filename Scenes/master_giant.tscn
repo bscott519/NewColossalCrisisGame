@@ -1479,7 +1479,7 @@ offset_bottom = 123.0
 scale = Vector2(1, 0.279998)
 theme_override_styles/background = SubResource("StyleBoxFlat_jhu71")
 theme_override_styles/fill = SubResource("StyleBoxFlat_h4x1j")
-max_value = 10.0
+max_value = 15.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="MGHealthBar"]
@@ -1512,9 +1512,9 @@ position = Vector2(0, 57)
 position = Vector2(-1, 15)
 shape = SubResource("RectangleShape2D_sntci")
 
-[connection signal="body_entered" from="MGSprites/Head/CcMasterGiantHead/HeadHitBox" to="." method="_on_head_hit_box_body_entered"]
-[connection signal="body_entered" from="MGSprites/RightHand/CcMasterGiantRighHand/RightHandHitbox" to="." method="_on_right_hand_hitbox_body_entered"]
-[connection signal="body_entered" from="MGSprites/LeftHand/CcMasterGiantLeftHand/LeftHandHitbox" to="." method="_on_left_hand_hitbox_body_entered"]
+[connection signal="area_entered" from="MGSprites/Head/CcMasterGiantHead/HeadHitBox" to="." method="_on_head_hit_box_area_entered"]
+[connection signal="area_entered" from="MGSprites/RightHand/CcMasterGiantRighHand/RightHandHitbox" to="." method="_on_right_hand_hitbox_area_entered"]
+[connection signal="area_entered" from="MGSprites/LeftHand/CcMasterGiantLeftHand/LeftHandHitbox" to="." method="_on_left_hand_hitbox_area_entered"]
 [connection signal="body_entered" from="MGSprites/MasterBeam/BeamHurtBox" to="." method="_on_beam_hurt_box_body_entered"]
 [connection signal="body_entered" from="MGSprites/MasterBeam2/BeamHurtBox2" to="." method="_on_beam_hurt_box_2_body_entered"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

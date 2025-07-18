@@ -203,7 +203,7 @@ autoplay = "idle"
 position = Vector2(-4, 7)
 shape = SubResource("CapsuleShape2D_3xc2w")
 
-[node name="DamageZone" type="Area2D" parent="."]
+[node name="DamageZone" type="Area2D" parent="." groups=["damagezone"]]
 script = ExtResource("3_14v64")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
