@@ -11,10 +11,11 @@ signal master_giant_died
 @onready var attack_cooldown = $AttackCooldown
 @onready var attack_radius = $AttackRadius
 @onready var head_hurtbox = $MGSprites/Head/CcMasterGiantHead/HeadHurtbox
+@onready var head_hitbox = $MGSprites/Head/CcMasterGiantHead/HeadHitBox
 @onready var right_hand_hurtbox = $MGSprites/RightHand/CcMasterGiantRighHand/RightHandHurtbox
+@onready var right_hand_hitbox = $MGSprites/RightHand/CcMasterGiantRighHand/RightHandHitbox
 @onready var left_hand_hurtbox = $MGSprites/LeftHand/CcMasterGiantLeftHand/LeftHandHurtbox
-@onready var enable_mg_damage_area: Timer = $EnableMGDamageArea
-@onready var disable_mg_damage_area: Timer = $DisableMGDamageArea
+@onready var left_hand_hitbox = $MGSprites/LeftHand/CcMasterGiantLeftHand/LeftHandHitbox
 
 var player_in_attack_radius = false
 var knockback_strength : float = 500
@@ -24,6 +25,7 @@ var is_chasing: bool = false
 var can_walk: bool
 var beam_1_can_dmg = false
 var beam_2_can_dmg = false
+var was_damaged_this_frame := false
 
 var mG_dmg: int = 0
 var can_dmg: bool = true
@@ -45,11 +47,6 @@ func _ready():
 	detection_area.connect("body_entered", _on_body_entered)
 	attack_radius.connect("body_entered", _on_attack_radius_body_entered)
 	
-	#$EGDealDamageArea/CollisionShape2D.set_deferred("disabled", true)
-	
-	#enable_eg_damage_area.timeout.connect(self._on_enable_eg_damage_area_timeout)
-	#disable_eg_damage_area.timeout.connect(self._on_disable_eg_damage_area_timeout)
-	
 	animation_player.connect("animation_finished", _on_animation_player_animation_finished)
 	
 	attack_cooldown.start()
@@ -57,6 +54,8 @@ func _ready():
 func _physics_process(delta):
 	if dead:
 		return
+	
+	was_damaged_this_frame = false
 	
 	$MGHealthBar.value = health
 	
@@ -166,9 +165,6 @@ func _on_attack_cooldown_timeout():
 		choose_attack()
 
 func take_dmg(dmg, knockback_dir):
-	if dead:
-		return
-	
 	health -= dmg
 	print("Master Giant takes ", dmg, " damage. Health now: ", health)
 	apply_knockback(knockback_dir)
@@ -176,27 +172,33 @@ func take_dmg(dmg, knockback_dir):
 	
 	if health <= min_health:
 		health = min_health
+	
+		if dead:
+			return
+		
 		dead = true
 		current_state = State.DEATH
-		animated_sprite_mg_death.play("death")
-		is_chasing = false
-		can_walk = false
-		velocity = Vector2.ZERO
-		emit_signal("master_giant_died")
-		
-		$MGDeath.play()
-		print("Enemy is dead. Disabling damage collision shape.")
+	
 		$MGHealthBar.hide()
-		
 		$MainCollisionShape2D.set_deferred("disabled", true) 
 		head_hurtbox.set_deferred("disabled", true)
 		left_hand_hurtbox.set_deferred("disabled", true)
 		right_hand_hurtbox.set_deferred("disabled", true)
+		head_hitbox.set_deferred("disabled", true)
+		right_hand_hitbox.set_deferred("disabled", true)
+		left_hand_hitbox.set_deferred("disabled", true)
 		
+		velocity = Vector2.ZERO
+		is_chasing = false
+		can_walk = false
 		animation_player.stop()
-		await get_tree().create_timer(1.0).timeout
-		await $MGDeath.finished
-		self.queue_free()
+		
+		$MGDeath.play()
+		animated_sprite_mg_death.play("death")
+
+		await animated_sprite_mg_death.animation_finished
+		emit_signal("master_giant_died")
+		queue_free()
 
 func apply_knockback(knockback_dir: Vector2):
 	if is_knocked_back:
@@ -217,41 +219,57 @@ func start_dmg_cooldown():
 	await get_tree().create_timer(dmg_cooldown).timeout
 	can_dmg = true
 
-func _on_enable_eg_damage_area_timeout():
-	enable_eg_timer()
-
-func _on_disable_eg_damage_area_timeout():
-	disable_eg_timer()
-	
-func enable_eg_timer():
-	$EGDealDamageArea/CollisionShape2D.disabled = false
-	is_deal_dmg = true
-
-func disable_eg_timer():
-	$EGDealDamageArea/CollisionShape2D.disabled = true
-	is_deal_dmg = false
-
 func _on_head_hit_box_area_entered(area):
-	if can_dmg and area.is_in_group("damagezone"):
-		print("Player entered Master Giant Head.")
-		var knockback_dir = (area.global_position - global_position).normalized()
-		take_dmg(dmg_to_deal, knockback_dir)
-		can_dmg = false
-		start_dmg_cooldown()
+	if dead or was_damaged_this_frame or not can_dmg or not area.is_in_group("damagezone"):
+		return
+	was_damaged_this_frame = true
+	can_dmg = false
+	print("Player entered Master Giant Head.")
+	start_dmg_cooldown()
+	var knockback_dir = (area.global_position - global_position).normalized()
+	take_dmg(1, knockback_dir)
 
 func _on_right_hand_hitbox_area_entered(area):
-	if can_dmg and area.is_in_group("damagezone"):
-		print("Player entered Master Giant Right Hand.")
-		var knockback_dir = (area.global_position - global_position).normalized()
-		take_dmg(dmg_to_deal, knockback_dir)
+	if dead or was_damaged_this_frame or not can_dmg or not area.is_in_group("damagezone"):
+		return
+	was_damaged_this_frame = true
+	can_dmg = false
+	print("Player entered Master Giant Right Hand.")
+	start_dmg_cooldown()
+	var knockback_dir = (area.global_position - global_position).normalized()
+	take_dmg(1, knockback_dir)
+
+func _on_left_hand_hitbox_area_entered(area):
+	if dead or was_damaged_this_frame or not can_dmg or not area.is_in_group("damagezone"):
+		return
+	was_damaged_this_frame = true
+	can_dmg = false
+	print("Player entered Master Giant Left Hand.")
+	start_dmg_cooldown()
+	var knockback_dir = (area.global_position - global_position).normalized()
+	take_dmg(1, knockback_dir)
+
+func _on_head_hurtbox_body_entered(body):
+	if can_dmg and body.is_in_group("player"):
+		print("Player entered Master Giant Head")
+		var knockback_dir = (body.global_position - global_position).normalized()
+		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
 		can_dmg = false
 		start_dmg_cooldown()
 
-func _on_left_hand_hitbox_area_entered(area):
-	if can_dmg and area.is_in_group("damagezone"):
-		print("Player entered Master Giant Left Hand.")
-		var knockback_dir = (area.global_position - global_position).normalized()
-		take_dmg(dmg_to_deal, knockback_dir)
+func _on_right_hand_hurtbox_body_entered(body):
+	if can_dmg and body.is_in_group("player"):
+		print("Player entered Master Giant Right Hand")
+		var knockback_dir = (body.global_position - global_position).normalized()
+		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
+		can_dmg = false
+		start_dmg_cooldown()
+		
+func _on_left_hand_hurtbox_body_entered(body):
+	if can_dmg and body.is_in_group("player"):
+		print("Player entered Master Giant Left Hand")
+		var knockback_dir = (body.global_position - global_position).normalized()
+		body.plyr_take_dmg(dmg_to_deal, knockback_dir)
 		can_dmg = false
 		start_dmg_cooldown()
 
