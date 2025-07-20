@@ -1,15 +1,11 @@
-[gd_scene load_steps=36 format=3 uid="uid://cwb6f3qlo4mpl"]
+[gd_scene load_steps=28 format=3 uid="uid://cwb6f3qlo4mpl"]
 
 [ext_resource type="Script" uid="uid://docqnn50valoa" path="res://Scripts/master_giant.gd" id="1_gv2vs"]
 [ext_resource type="Texture2D" uid="uid://6ddjklopc4e" path="res://GameArt/CCMasterGiantHead.png" id="1_o2p3u"]
 [ext_resource type="Texture2D" uid="uid://c310no3s8h500" path="res://GameArt/CCMasterGiantLeftHand.png" id="2_4mstd"]
 [ext_resource type="Texture2D" uid="uid://bjpmhjqthoxjv" path="res://GameArt/CCMasterGiantRighHand.png" id="3_di18c"]
-[ext_resource type="Texture2D" uid="uid://bapnf131jmdih" path="res://GameArt/TMMEnemyDeath1.png" id="4_7omvd"]
-[ext_resource type="Texture2D" uid="uid://l1yxspaxqyio" path="res://GameArt/TMMEnemyDeath2.png" id="5_lp5c8"]
-[ext_resource type="Texture2D" uid="uid://hcy0hjwm1svq" path="res://GameArt/TMMEnemyDeath3.png" id="6_2htnq"]
 [ext_resource type="Texture2D" uid="uid://bgwhsne6x82d" path="res://GameArt/CCMasterBeam.png" id="7_lp5c8"]
 [ext_resource type="FontFile" uid="uid://bajqlmo0hm0fl" path="res://GameArt/Shouldve Known.otf" id="9_xa0uu"]
-[ext_resource type="AudioStream" uid="uid://drjvewt1v2ivs" path="res://Sounds/sounds/explosion.wav" id="10_sntci"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xa0uu"]
 height = 74.0
@@ -1304,38 +1300,6 @@ radius = 23.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_lp5c8"]
 radius = 24.0208
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gv2vs"]
-atlas = ExtResource("4_7omvd")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xa0uu"]
-atlas = ExtResource("5_lp5c8")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sntci"]
-atlas = ExtResource("6_2htnq")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jhu71"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gv2vs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xa0uu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sntci")
-}, {
-"duration": 1.0,
-"texture": null
-}],
-"loop": false,
-"name": &"default",
-"speed": 7.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lp5c8"]
 size = Vector2(14, 29.6075)
 
@@ -1435,12 +1399,6 @@ scale = Vector2(1.25, 1.25)
 position = Vector2(47, 40)
 shape = SubResource("CircleShape2D_lp5c8")
 
-[node name="MGDeath" type="AnimatedSprite2D" parent="MGSprites"]
-position = Vector2(0, 5)
-sprite_frames = SubResource("SpriteFrames_jhu71")
-frame = 3
-frame_progress = 1.0
-
 [node name="MasterBeam" type="Sprite2D" parent="MGSprites"]
 visible = false
 position = Vector2(-50, 92.5)
@@ -1491,9 +1449,6 @@ offset_bottom = 26.5715
 scale = Vector2(0.32, 1.00001)
 theme_override_fonts/font = ExtResource("9_xa0uu")
 text = "THE MASTER GIANT"
-
-[node name="MGDeath" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_sntci")
 
 [node name="Detection" type="Area2D" parent="."]
 position = Vector2(0, 57)

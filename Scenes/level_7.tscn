@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cg4v8rai28a26"]
+[gd_scene load_steps=24 format=3 uid="uid://cg4v8rai28a26"]
 
 [ext_resource type="Script" uid="uid://r1paro7iqiek" path="res://Scripts/level_7.gd" id="1_gn553"]
 [ext_resource type="Texture2D" uid="uid://8cx7tt73xvj0" path="res://GameArt/CCCastleInterior.png" id="2_gn553"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b07naphow6dr2" path="res://Scenes/pause_menu.tscn" id="11_hfdvb"]
 [ext_resource type="PackedScene" uid="uid://c7iym8qvw4i4e" path="res://Scenes/killzone.tscn" id="13_hb764"]
 [ext_resource type="AudioStream" uid="uid://b8dvr4re3ybsg" path="res://Sounds/Minifantasy_Dungeon_Music/Music/Goblins_Dance_(Battle).wav" id="14_td06s"]
+[ext_resource type="PackedScene" uid="uid://djfux1a370y1t" path="res://Scenes/mgdeathanim.tscn" id="16_7qh3q"]
 [ext_resource type="PackedScene" uid="uid://cwb6f3qlo4mpl" path="res://Scenes/master_giant.tscn" id="16_irpto"]
 [ext_resource type="PackedScene" uid="uid://buy507nxy6xwt" path="res://Scenes/boss_door.tscn" id="16_y233x"]
 [ext_resource type="Script" uid="uid://3mnpbkwocaoa" path="res://Scripts/boss_door.gd" id="17_vu0bl"]
@@ -201,6 +202,9 @@ scale = Vector2(3.5, 3.5)
 [node name="LevelTheme4" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_td06s")
 autoplay = true
+
+[node name="MGDeath" parent="." instance=ExtResource("16_7qh3q")]
+position = Vector2(0, 5)
 
 [connection signal="finished" from="LevelTheme" to="." method="_on_level_theme_finished"]
 [connection signal="playerEntered" from="BossTrigger" to="BossDoor" method="_on_boss_trigger_player_entered"]

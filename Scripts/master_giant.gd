@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 @onready var animation_player = $AnimationPlayer
-@onready var animated_sprite_mg_death = $MGSprites/MGDeath
 
 enum State { IDLE, CHASE, LEFTSWIPE, RIGHTSWIPE, LEFTBLAST, RIGHTBLAST, LASEREYES, DEATH }
 
@@ -193,10 +192,11 @@ func take_dmg(dmg, knockback_dir):
 		can_walk = false
 		animation_player.stop()
 		
-		$MGDeath.play()
-		animated_sprite_mg_death.play("death")
-
-		await animated_sprite_mg_death.animation_finished
+		var death_anim = preload("res://Scenes/mgdeathanim.tscn").instantiate()
+		get_tree().current_scene.add_child(death_anim)
+		death_anim.global_position = global_position
+		
+		death_anim.get_node("MGDeathSound").play()
 		emit_signal("master_giant_died")
 		queue_free()
 

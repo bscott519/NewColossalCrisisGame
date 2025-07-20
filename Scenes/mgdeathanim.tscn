@@ -1,0 +1,50 @@
+[gd_scene load_steps=10 format=3 uid="uid://djfux1a370y1t"]
+
+[ext_resource type="Texture2D" uid="uid://bapnf131jmdih" path="res://GameArt/TMMEnemyDeath1.png" id="1_6bwka"]
+[ext_resource type="Texture2D" uid="uid://l1yxspaxqyio" path="res://GameArt/TMMEnemyDeath2.png" id="2_gc3ad"]
+[ext_resource type="Texture2D" uid="uid://hcy0hjwm1svq" path="res://GameArt/TMMEnemyDeath3.png" id="3_lfwfh"]
+[ext_resource type="Script" uid="uid://cau51ptt2ws0t" path="res://Scripts/mgdeathanim.gd" id="4_gc3ad"]
+[ext_resource type="AudioStream" uid="uid://drjvewt1v2ivs" path="res://Sounds/sounds/explosion.wav" id="5_lfwfh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv2vs"]
+atlas = ExtResource("1_6bwka")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xa0uu"]
+atlas = ExtResource("2_gc3ad")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sntci"]
+atlas = ExtResource("3_lfwfh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f8wta"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gv2vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xa0uu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sntci")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}]
+
+[node name="MGDeathAnim" type="Node2D"]
+script = ExtResource("4_gc3ad")
+
+[node name="MGDeath" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_f8wta")
+animation = &"death"
+
+[node name="MGDeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_lfwfh")

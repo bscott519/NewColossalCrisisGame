@@ -20,7 +20,6 @@ func _ready():
 	boss.master_giant_died.connect(door1.open_doors)
 	boss.master_giant_died.connect(door2.open_doors)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
