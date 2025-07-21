@@ -178,26 +178,26 @@ position = Vector2(1366, -305)
 rotation = 6.28319
 scale = Vector2(2.44737, 1.452)
 texture = ExtResource("2_bevw8")
-flip_h = true
 
 [node name="Background11" type="Sprite2D" parent="."]
 position = Vector2(2296, -305)
 rotation = 6.28319
 scale = Vector2(2.44737, 1.452)
 texture = ExtResource("2_bevw8")
+flip_h = true
 
 [node name="Background12" type="Sprite2D" parent="."]
 position = Vector2(3225, -305)
 rotation = 6.28319
 scale = Vector2(2.44737, 1.452)
 texture = ExtResource("2_bevw8")
-flip_h = true
 
 [node name="Background13" type="Sprite2D" parent="."]
 position = Vector2(4155, -305)
 rotation = 6.28319
 scale = Vector2(2.44737, 1.452)
 texture = ExtResource("2_bevw8")
+flip_h = true
 
 [node name="Background23" type="Sprite2D" parent="."]
 position = Vector2(884, 416)
